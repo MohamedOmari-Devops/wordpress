@@ -1,0 +1,36 @@
+replicaCount: 1
+
+image:
+  repository: wordpress
+  pullPolicy: IfNotPresent
+  tag: 5.7.2
+
+service:
+  type: LoadBalancer
+  port: 80
+
+ingress:
+  enabled: true
+  annotations: {}
+  hosts:
+    - host: test.yyy.ma
+      paths: []
+  tls: []
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+mysql:
+  enabled: true
+  image:
+    repository: mysql
+    tag: 5.7
+    pullPolicy: IfNotPresent
+  mysqlRootPassword: example
+  mysqlUser: wordpress
+  mysqlPassword: wordpress
+  mysqlDatabase: wordpress
+  service:
+    port: 3306
